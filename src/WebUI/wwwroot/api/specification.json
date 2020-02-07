@@ -7,6 +7,27 @@
   },
   "paths": {
     "/api/Employee": {
+      "get": {
+        "tags": [
+          "Employee"
+        ],
+        "operationId": "Employee_GetAllEmployees",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Employee"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
       "post": {
         "tags": [
           "Employee"
@@ -42,6 +63,53 @@
   },
   "components": {
     "schemas": {
+      "Employee": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "employeeId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "firstName": {
+            "type": "string",
+            "nullable": true
+          },
+          "lastName": {
+            "type": "string",
+            "nullable": true
+          },
+          "phoneNumber": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "inventory": {
+            "type": "array",
+            "nullable": true,
+            "items": {
+              "$ref": "#/components/schemas/Tool"
+            }
+          }
+        }
+      },
+      "Tool": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "toolId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "toolName": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
       "CreateEmployeeCommand": {
         "type": "object",
         "additionalProperties": false,
